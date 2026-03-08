@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutiger Aero Dünyası</title>
+    <style>
+        /* Renk Paleti ve Temel Ayarlar */
+        :root {
+            --sky-blue: #4fa1f9;
+            --light-blue: #9cd3ff;
+            --fresh-green: #88c928;
+            --glass-bg: rgba(255, 255, 255, 0.35);
+            --glass-border: rgba(255, 255, 255, 0.7);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Gökyüzünden çimene geçiş yapan arka plan */
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--sky-blue) 40%, var(--fresh-green) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #0b2b47;
+        }
+
+        /* Arka Plan Baloncuk / Işık Efektleri (Skeuomorfizm) */
+        .background-effects {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.1));
+            box-shadow: 0 0 20px rgba(255,255,255,0.4), inset 0 0 20px rgba(255,255,255,0.6);
+        }
+
+        .bubble1 { width: 180px; height: 180px; top: 10%; left: 15%; }
+        .bubble2 { width: 90px; height: 90px; top: 70%; left: 80%; }
+        .bubble3 { width: 250px; height: 250px; bottom: -50px; left: 35%; opacity: 0.6; }
+
+        /* Cam Efektli Ana Konteyner (Glassmorphism & Aero) */
+        .glass-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 2.2em;
+            text-shadow: 0 2px 5px rgba(255,255,255,0.9);
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        /* 2000'ler Tarzı Parlak Düğme (Glossy Button) */
+        .glossy-btn {
+            margin-top: 20px;
+            /* Üstü açık, altı koyu, ortası keskin geçişli ikonik parlak buton */
+            background: linear-gradient(to bottom, #7dd842 0%, #4a9d15 50%, #38840b 51%, #56b01f 100%);
+            border: 1px solid #2d6b08;
+            border-radius: 30px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px 40px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.7);
+            text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .glossy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3), inset 0 2px 5px rgba(255,255,255,0.8);
+            /* Hover durumunda biraz daha parlak */
+            background: linear-gradient(to bottom, #8dec51 0%, #5ab41f 50%, #469c11 51%, #67c729 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-effects">
+        <div class="bubble bubble1"></div>
+        <div class="bubble bubble2"></div>
+        <div class="bubble bubble3"></div>
+    </div>
+
+    <div class="glass-container">
+        <header>
+            <h1>Frutiger Aero</h1>
+            <p>2000'lerin parlak, şeffaf ve iyimser web tasarımına tekrar hoş geldin. Cam efektleri, doğa renkleri ve kusursuz parlaklık.</p>
+        </header>
+
+        <section class="content">
+            <button class="glossy-btn">İçeri Gir</button>
+        </section>
+    </div>
+</body>
+</html>
