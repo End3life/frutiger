@@ -3,115 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frutiger Aero Dünyası</title>
+    <title>Aurora Gamers | Sosyal Ağ</title>
     <style>
-        /* Renk Paleti ve Temel Ayarlar */
         :root {
-            --sky-blue: #4fa1f9;
-            --light-blue: #9cd3ff;
-            --fresh-green: #88c928;
-            --glass-bg: rgba(255, 255, 255, 0.35);
-            --glass-border: rgba(255, 255, 255, 0.7);
+            --bg-dark: #070b19;
+            --aurora-cyan: #00d2ff;
+            --aurora-green: #00ff87;
+            --aurora-purple: #8a2be2;
+            --glass-panel: rgba(15, 25, 45, 0.6);
+            --glass-border: rgba(0, 210, 255, 0.3);
+            --text-light: #e0f7fa;
+            --text-muted: #8ba4b5;
+            --user-neon: #ff0055; 
         }
 
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Gökyüzünden çimene geçiş yapan arka plan */
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--sky-blue) 40%, var(--fresh-green) 100%);
-            min-height: 100vh;
+            font-family: 'Tahoma', 'Lucida Grande', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 20% 40%, rgba(0, 210, 255, 0.15), transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 135, 0.1), transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(138, 43, 226, 0.15), transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            padding-top: 60px;
+        }
+
+        /* Üst Menü */
+        .top-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 45px;
+            background: linear-gradient(to bottom, rgba(20, 40, 70, 0.9) 0%, rgba(10, 20, 40, 0.95) 100%);
+            border-bottom: 1px solid var(--aurora-cyan);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
             display: flex;
-            justify-content: center;
             align-items: center;
-            overflow: hidden;
-            color: #0b2b47;
+            justify-content: space-between;
+            padding: 0 15%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
-        /* Arka Plan Baloncuk / Işık Efektleri (Skeuomorfizm) */
-        .background-effects {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: -1;
+        .logo { font-size: 1.5em; font-weight: bold; color: #fff; text-shadow: 0 0 10px var(--aurora-cyan); text-decoration: none; }
+        
+        .nav-links span {
+            margin-right: 15px; cursor: pointer; padding: 5px 10px; border-radius: 5px; transition: 0.2s;
+        }
+        .nav-links span:hover, .nav-links span.active {
+            background: rgba(0, 210, 255, 0.2); box-shadow: inset 0 0 10px rgba(0, 210, 255, 0.2);
         }
 
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.1));
-            box-shadow: 0 0 20px rgba(255,255,255,0.4), inset 0 0 20px rgba(255,255,255,0.6);
+        .container { display: flex; width: 80%; margin: 20px auto; gap: 20px; }
+        .left-sidebar { width: 200px; flex-shrink: 0; }
+        .middle-column { flex-grow: 1; max-width: 600px; padding-bottom: 100px; } /* Alt kısım sohbet için boşluk */
+        .right-sidebar { width: 220px; flex-shrink: 0; }
+
+        .glass-box {
+            background: var(--glass-panel); border: 1px solid var(--glass-border);
+            border-radius: 8px; padding: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
         }
 
-        .bubble1 { width: 180px; height: 180px; top: 10%; left: 15%; }
-        .bubble2 { width: 90px; height: 90px; top: 70%; left: 80%; }
-        .bubble3 { width: 250px; height: 250px; bottom: -50px; left: 35%; opacity: 0.6; }
-
-        /* Cam Efektli Ana Konteyner (Glassmorphism & Aero) */
-        .glass-container {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 50px;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.8);
-        }
-
-        h1 {
-            margin-top: 0;
-            font-size: 2.2em;
-            text-shadow: 0 2px 5px rgba(255,255,255,0.9);
-            letter-spacing: -0.5px;
-        }
-
-        p {
-            font-size: 1.1em;
-            line-height: 1.6;
-        }
-
-        /* 2000'ler Tarzı Parlak Düğme (Glossy Button) */
         .glossy-btn {
-            margin-top: 20px;
-            /* Üstü açık, altı koyu, ortası keskin geçişli ikonik parlak buton */
-            background: linear-gradient(to bottom, #7dd842 0%, #4a9d15 50%, #38840b 51%, #56b01f 100%);
-            border: 1px solid #2d6b08;
-            border-radius: 30px;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 15px 40px;
-            cursor: pointer;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.7);
-            text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: linear-gradient(to bottom, rgba(0, 210, 255, 0.4) 0%, rgba(0, 100, 200, 0.6) 100%);
+            border: 1px solid var(--aurora-cyan); border-radius: 15px; color: white;
+            padding: 5px 15px; cursor: pointer; text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.4);
         }
 
-        .glossy-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.3), inset 0 2px 5px rgba(255,255,255,0.8);
-            /* Hover durumunda biraz daha parlak */
-            background: linear-gradient(to bottom, #8dec51 0%, #5ab41f 50%, #469c11 51%, #67c729 100%);
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ---------------------------------------------------
+           2011 Tarzı Sağ Alt Sohbet Pencereleri (Frutiger Aurora)
+           --------------------------------------------------- */
+        .chat-dock {
+            position: fixed;
+            bottom: 0;
+            right: 50px;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            z-index: 9999;
+        }
+
+        /* Çevrimiçi Arkadaş Tab'ı */
+        .chat-tab {
+            background: linear-gradient(to top, rgba(10, 20, 40, 0.95), rgba(20, 40, 70, 0.9));
+            border: 1px solid var(--aurora-green);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            padding: 8px 15px;
+            width: 200px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -2px 10px rgba(0, 255, 135, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .status-dot {
+            width: 8px; height: 8px; background-color: var(--aurora-green);
+            border-radius: 50%; box-shadow: 0 0 5px var(--aurora-green); display: inline-block; margin-right: 5px;
+        }
+
+        /* Açılır Sohbet Penceresi */
+        .chat-window {
+            width: 260px;
+            background: var(--glass-panel);
+            border: 1px solid var(--aurora-cyan);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            display: none; /* Varsayılan olarak gizli */
+            flex-direction: column;
+            box-shadow: 0 -5px 15px rgba(0, 210, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .chat-window.open {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(to right, rgba(0, 210, 255, 0.3), transparent);
+            padding: 8px 10px;
+            border-radius: 8px 8px 0 0;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .chat-close {
+            cursor: pointer; color: var(--text-muted); font-size: 1.2em;
+        }
+        .chat-close:hover { color: white; }
+
+        .chat-messages {
+            height: 200px;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 0.85em;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Mesaj Baloncukları */
+        .msg { padding: 6px 10px; border-radius: 12px; max-width: 80%; line-height: 1.3; }
+        .msg.received { background: rgba(255,255,255,0.1); align-self: flex-start; border-bottom-left-radius: 2px; }
+        .msg.sent { background: rgba(0, 210, 255, 0.2); border: 1px solid rgba(0, 210, 255, 0.4); align-self: flex-end; border-bottom-right-radius: 2px; }
+
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid var(--glass-border);
+            padding: 5px;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .chat-input-area input {
+            flex-grow: 1; background: transparent; border: none; color: white;
+            padding: 5px; outline: none; font-family: inherit; font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <div class="background-effects">
-        <div class="bubble bubble1"></div>
-        <div class="bubble bubble2"></div>
-        <div class="bubble bubble3"></div>
+
+    <div class="top-bar">
+        <a href="#" class="logo">AuroraGamers</a>
+        <div class="nav-links">
+            <span class="active" onclick="switchTab('feed')">Haber Kaynağı</span>
+            <span onclick="switchTab('profile')">Profilim</span>
+        </div>
     </div>
 
-    <div class="glass-container">
-        <header>
-            <h1>Frutiger Aero</h1>
-            <p>2000'lerin parlak, şeffaf ve iyimser web tasarımına tekrar hoş geldin. Cam efektleri, doğa renkleri ve kusursuz parlaklık.</p>
-        </header>
+    <div class="container">
+        <div class="left-sidebar">
+            <div class="glass-box" style="padding: 10px; text-align: center;">
+                <div style="font-weight: bold;">Oyuncu_TR</div>
+                <div style="font-size: 0.8em; color: var(--aurora-cyan);">Seviye 42</div>
+            </div>
+            <ul style="list-style:none; padding:0; margin:0; color:var(--text-light);">
+                <li style="margin-bottom:10px; cursor:pointer;">🏠 Ana Sayfa</li>
+                <li style="margin-bottom:10px; cursor:pointer;">✉️ Mesajlar <span style="background:var(--user-neon); padding:2px 5px; border-radius:10px; font-size:0.7em;">1</span></li>
+            </ul>
+        </div>
 
-        <section class="content">
-            <button class="glossy-btn">İçeri Gir</button>
-        </section>
+        <div class="middle-column">
+            <div id="feed" class="tab-content active">
+                <div class="glass-box">
+                    <textarea style="width:100%; background:rgba(0,0,0,0.3); color:white; border:1px solid var(--glass-border); padding:10px;" rows="3" placeholder="Yeni bir oyun mu keşfettin?"></textarea>
+                    <div style="text-align: right; margin-top: 10px;"><button class="glossy-btn">Paylaş</button></div>
+                </div>
+            </div>
+
+            <div id="profile" class="tab-content">
+                <div class="glass-box">
+                    <h2>Profil Ayarları</h2>
+                    <p>Burası profil sekmesi.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-sidebar">
+            <div class="glass-box" style="padding: 10px;">
+                <h4 style="margin-top: 0; border-bottom: 1px solid var(--glass-border);">Sohbet</h4>
+                <div style="font-size: 0.9em; margin-bottom: 5px; cursor: pointer;" onclick="toggleChat('RiffMaster99')">
+                    <span class="status-dot"></span> RiffMaster99
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="chat-dock">
+        
+        <div class="chat-tab" id="chatTab" onclick="toggleChat()">
+            <div><span class="status-dot"></span> RiffMaster99</div>
+            <div style="background: var(--user-neon); font-size: 0.7em; padding: 2px 6px; border-radius: 10px; color: white;">1</div>
+        </div>
+
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header" onclick="toggleChat()">
+                <div><span class="status-dot"></span> RiffMaster99</div>
+                <div class="chat-close">×</div>
+            </div>
+            
+            <div class="chat-messages">
+                <div class="msg received">Selam! Akşamki boss raid'ine geliyor musun?</div>
+                <div class="msg sent">Evet, arka planda Mercyful Fate listesini hazırladım bile. King Diamond'ın vokalleriyle boss kesmek efsane oluyor 🤘</div>
+                <div class="msg received">Hahaha harika! 20:00'da lobide buluşuruz o zaman.</div>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" placeholder="Bir mesaj yaz...">
+                <button style="background:transparent; border:none; color:var(--aurora-cyan); cursor:pointer;">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-links span').forEach(link => link.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Sohbet Penceresini Açma/Kapatma Fonksiyonu
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatTab = document.getElementById('chatTab');
+            
+            if (chatWindow.classList.contains('open')) {
+                // Kapat ve sadece tab kalsın
+                chatWindow.classList.remove('open');
+                chatTab.style.display = 'flex';
+            } else {
+                // Aç ve tab'ı gizle
+                chatWindow.classList.add('open');
+                chatTab.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
